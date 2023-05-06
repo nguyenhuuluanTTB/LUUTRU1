@@ -12,39 +12,39 @@ struct List{
 };
 typedef struct List;
 
-void Khoitao(List &l){ 
+void Khoitao(List &l){
 	l.pHead = NULL;
 	l.pTail = NULL;
 }
 
 Node* khoitaoNode(int x){
-	Node *newNode = (Node*)malloc(sizeof(Node));// ,mot mang newNode kieu Node duoc cap phat bo nho dong, no se chua data va pNext
-	    	newNode -> Data=x;
-			newNode -> pNext = NULL; 
-	return newNode; // tra ve mot cai newNode gom Data|pNext(dia chi cua Node tiep theo la NULL)
+	Node *new_ele = (Node*)malloc(sizeof(Node));// ,mot mang new_ele kieu Node duoc cap phat bo nho dong, no se chua data va pNext
+	    	new_ele -> Data=x;
+			new_ele -> pNext = NULL; 
+	return new_ele; // tra ve mot cai new_ele gom Data|pNext(dia chi cua Node tiep theo la NULL)
 }
-void AddFirst(List &l, Node *newNode)
+void AddFirst(List &l, Node *new_ele)
 {
 
 	if(l.pHead==NULL){
-		l.pHead =  newNode;
-		l.pTail = newNode;
+		l.pHead =  new_ele;
+		l.pTail = new_ele;
 	}
 	else{
-		newNode -> pNext = l.pHead;
-		l.pHead = newNode;
+		new_ele -> pNext = l.pHead;
+		l.pHead = new_ele;
 	}
 	  
 }
 void Output(List l)
 {
-	for(Node *k= l.pHead; k!=NULL ; k = k->pNext)
+	for(Node* k= l.pHead; k!=NULL ; k = k->pNext)
 	   {
 	   	   printf(" %d ",k->Data);
 	   }
 }
 int main(){
-	int n;
+	int a[1000],n;
 	List l; //khai bao bien l kieu List
 	Khoitao(l); //Khoi tao mot danh sach lien ket rong
     printf("\nNHap so luong can them: ");
@@ -53,8 +53,7 @@ int main(){
     	int x;
     	printf("\nNhap gia tri them: ");
     	scanf("%d",&x); 
-    	Node* newNode = khoitaoNode(x); //Khoi tao newNode -> gan gia tri cho con tro newNode 
-    	AddFirst(l,newNode);
+        AddFirst(l, khoitaoNode(x));
 	}
 	printf("\nGia tri cac phan tu cua mang : ");
 	Output(l);
